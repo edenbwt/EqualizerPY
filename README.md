@@ -1,60 +1,31 @@
-# Interface d'Équaliseur Sonore
+# Equalizer Interface Project
+
+## Introduction
+Ce projet consiste à créer une interface graphique en Python permettant de modifier les bandes de fréquences d’un fichier audio `.wav` en appliquant des filtres d’égalisation. L'interface est conçue pour un égaliseur à cinq bandes de fréquence, permettant un ajustement précis des fréquences sonores pour améliorer ou modifier la qualité audio.
 
 ## Objectif du Projet
-
-Ce projet consiste en la création d'une interface graphique en Python pour modifier des bandes sonores en appliquant des effets de filtrage. Dans le cadre de ce mini-projet, vous jouerez le rôle d'un ingénieur travaillant sur des techniques pour améliorer la qualité sonore des enregistrements. Plus spécifiquement, l'objectif est de créer un équaliseur capable de manipuler différentes bandes de fréquence d'un fichier audio en temps réel.
+L'objectif est de créer un égaliseur graphique qui modifie les fréquences d'un fichier `.wav` en ajustant indépendamment cinq bandes de fréquence. Ce projet vous permettra d'apprendre les bases du traitement de signal audio, la manipulation de filtres d’égalisation, et la création d'interfaces utilisateur en Python.
 
 ## Fonctionnalités
+1. Sélection de fichier `.wav` : Un bouton permet de sélectionner un fichier audio `.wav` à traiter.
+2. Bandes de fréquence : Cinq curseurs permettent de régler le gain de chaque bande de fréquence pour moduler le son.
+3. Lancement du traitement : Un bouton de traitement applique les réglages et affiche dans le terminal les valeurs des réglages actuels des curseurs de fréquence.
 
-L'application d'équalisation inclut :
-- **Sélection d'un fichier `.wav`** : Permet de sélectionner un fichier audio `.wav` pour appliquer des modifications.
-- **Contrôle de fréquence par bandes** : Interface avec 5 bandes de fréquence contrôlables individuellement pour ajuster le gain.
-- **Traitement et affichage** : Un bouton pour lancer le traitement et visualiser les gains appliqués dans la console.
+## Algorithmes et Techniques Utilisés
 
-Dans un premier temps, l'interface se limite à afficher les valeurs des sliders dans le terminal.
+### Algorithme de Filtrage
+Chaque bande de fréquence de l’égaliseur est associée à un filtre passif avec un coefficient de gain réglable. Ces filtres permettent de renforcer ou d’atténuer certaines plages de fréquence, afin de modifier le spectre sonore du fichier audio.
 
-## Technologies et Bibliothèques
+### Types de Filtres Utilisés
+1. Filtre Passe-Bas : Atténue les fréquences au-dessus d’un seuil, utilisé pour la bande basse.
+2. Filtre Passe-Haut : Atténue les fréquences sous un seuil, utilisé pour la bande haute.
+3. Filtres Passe-Bande : Utilisés pour les bandes médium-basses, médium, et médium-hautes, ils permettent d’ajuster le gain d’une plage de fréquence spécifique.
 
-Le projet utilise les technologies et bibliothèques suivantes :
-- **Python** pour la programmation générale et le traitement audio.
-- **Qt pour Python** pour créer l'interface graphique.
-- **NumPy et SciPy** pour le traitement du signal, notamment pour implémenter les filtres.
-- **Matplotlib** pour les visualisations temporelles et fréquentielles.
+### Réponses Impulsionnelles des Filtres
+Les réponses impulsionnelles des filtres illustrent comment chaque filtre réagit à une impulsion sonore. Elles montrent l'effet de chaque bande de fréquence et aident à visualiser le traitement sonore appliqué.
 
-## Structure du Projet
+### Exemples de Réponses Impulsionnelles
+- Basse (Filtre Passe-Bas) : Réponse impulsionnelle pour la plage de fréquences basses.
+- Medium-Bas, Medium, Medium-Haut (Filtres Passe-Bande) : Réponses impulsionnelles pour chaque bande centrale.
+- Aigu (Filtre Passe-Haut) : Réponse impulsionnelle pour la plage de fréquences hautes.
 
-Le dépôt est organisé comme suit :
-- `00-interfaceEqualizer.py` : Interface de base pour l'équaliseur.
-- `01-generationSignaux_T_et_F.py` : Génération de signaux pour les visualisations temporelle et fréquentielle.
-- `02-filtrageEx.py` : Exemple de filtrage.
-- `LW_20M_amis.wav` : Fichier de test `.wav` pour valider le fonctionnement de l'équaliseur.
-
-## Algorithmes
-
-Les filtres de l'équaliseur sont implémentés pour diviser le signal en plusieurs bandes de fréquence, permettant d'amplifier ou de diminuer certaines gammes de fréquences. Voici les algorithmes principaux :
-
-### 1. Filtrage par Bandes de Fréquences
-
-L'équaliseur utilise cinq filtres en bande pour diviser le spectre sonore en bandes spécifiques. Chaque filtre peut être ajusté pour augmenter ou diminuer l'amplitude de sa bande de fréquence correspondante. Les bandes peuvent être définies comme suit :
-- **Graves** (20 Hz - 200 Hz)
-- **Basses moyennes** (200 Hz - 1000 Hz)
-- **Moyennes** (1 kHz - 4 kHz)
-- **Hautes moyennes** (4 kHz - 10 kHz)
-- **Aigus** (10 kHz - 20 kHz)
-
-### 2. Réponse Impulsionnelle des Filtres
-
-Chaque filtre est conçu pour produire une réponse impulsionnelle qui dépend de ses paramètres de gain et de fréquence. La réponse impulsionnelle permet de visualiser comment chaque bande de fréquence est affectée par les réglages de gain.
-
-### Coefficients des Filtres
-
-Les coefficients des filtres sont calculés en fonction des fréquences de coupure de chaque bande. Nous utilisons des filtres numériques de type FIR ou IIR, en ajustant les paramètres de manière à obtenir la réponse en fréquence souhaitée.
-
-## Instructions d'Installation et d'Exécution
-
-1. **Installation des dépendances**  
-   Clonez le dépôt GitHub, puis installez les bibliothèques nécessaires :
-   ```bash
-   git clone <URL-du-dépot>
-   cd <nom-du-dossier>
-   pip install -r requirements.txt
